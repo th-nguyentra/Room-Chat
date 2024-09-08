@@ -1,29 +1,25 @@
 import { Button, Container, Heading, Stack } from "@chakra-ui/react";
-import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, facebookProvider, googleProvider } from "../../firebase/config";
+import { facebookProvider, googleProvider } from "../../firebase/config";
+import useAuthRedirect from "../../hooks/useAuthRedirect";
+import useAuthStore from "../../stores/authStore";
 
 const Login = () => {
+  useAuthRedirect();
   const navigate = useNavigate();
 
+  const { signIn } = useAuthStore((state) => ({
+    signIn: state.signIn,
+  }));
+
   const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      console.log("user", result.user);
-      navigate("/room-chat/home/");
-    } catch (error) {
-      console.error("Error during Google login", error);
-    }
+    await signIn(googleProvider);
+    navigate("/room-chat/");
   };
 
   const handleFacebookLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, facebookProvider);
-      console.log("user", result.user);
-      navigate("/room-chat/home/");
-    } catch (error) {
-      console.error("Error during Facebook login", error);
-    }
+    await signIn(facebookProvider);
+    navigate("/room-chat/");
   };
 
   return (
