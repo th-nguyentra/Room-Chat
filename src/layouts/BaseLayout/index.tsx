@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   Box,
   Drawer,
@@ -7,9 +8,8 @@ import {
 } from "@chakra-ui/react";
 
 // Components
-import MobileNav from "./MobileNav";
+import MobileNav from "./Nav";
 import SidebarContent from "./SidebarContent";
-import { ReactNode } from "react";
 
 interface BaseLayoutProps {
   children: ReactNode;
