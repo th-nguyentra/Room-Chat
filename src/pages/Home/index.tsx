@@ -1,14 +1,7 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import BaseLayout from "../../layouts/BaseLayout";
 
 const Home = () => {
-  return (
-    <Box p={5}>
-      <Heading as="h1" size="xl" mb={4}>
-        Home
-      </Heading>
-      <Text fontSize="lg">Welcome to the Home Page!</Text>
-    </Box>
-  );
+  return <BaseLayout>Rom</BaseLayout>;
 };
 
 export default Home;
